@@ -1,0 +1,55 @@
+version: '3'
+
+services:
+  laravel-mail:
+    build: .
+    container_name: "laravel-mail"
+    ports:
+      - "81:80"
+      - "443:443"
+      - "6001:6001"
+    volumes:
+      - ./:/var/www/
+    networks:
+      - backend
+  mysql-app:
+    image: mysql:5.7.22
+    container_name: "sc-mysql"
+    ports:
+      - "3306:3306"
+    volumes:
+      - .docker/dbdata:/var/lib/mysql
+    environment:
+      MYSQL_DATABASE: laravelMail
+      MYSQL_ROOT_PASSWORD: someRandomPassword
+    networks:
+      - backend
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:4.9
+    container_name: 'sc-phpmyadmin49'
+    networks:
+      - backend
+    environment:
+      PMA_HOST:            "mysql-app"
+      PMA_PORT:            3306
+      PMA_USER:            "root"
+      PMA_PASSWORD:        "someRandomPassword"
+      MYSQL_DATABASE:      "laravelMail"
+      MYSQL_USER:          "root"
+      MYSQL_PASSWORD:      "someRandomPassword"
+      MYSQL_ROOT_PASSWORD: "someRandomPassword"
+    ports:
+      - '8080:80'
+    volumes:
+      - .docker/phpmyadmin/data/sessions:/sessions
+  redis:
+    image: redis:alpine
+    expose:
+      - 6379
+    networks:
+      - backend
+networks:
+  #  frontend:
+  #    driver: bridge
+  backend:
+    driver: bridge
