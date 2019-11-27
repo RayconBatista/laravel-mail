@@ -2,6 +2,7 @@
 
 namespace App\Mail;
 
+use App\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
@@ -17,9 +18,9 @@ class UserRegistered extends Mailable
      *
      * @return void
      */
-    public function __construct(\App\User $user)
+    public function __construct()
     {
-        $this->user = $user;
+        //$this->user = $user;
     }
 
     /**
@@ -29,6 +30,9 @@ class UserRegistered extends Mailable
      */
     public function build()
     {
-        return $this->markdown('emails.users.registered');
+        return $this->from('rayconlimabatista18@gmail.com', 'Raycon')
+                    ->to(['rayconbentes16@gmail.com', 'rayconlimabatista@gmail.com'])
+                    ->markdown('emails.users.registered')
+                    ->view('emails.users.registered');
     }
 }
