@@ -11,31 +11,27 @@
 |
 */
 
-//Route::get('/mail', function () {
-////    return view('welcome');
-//    Mail::send('mail.alphart', ['curso' => 'Design'], function($m){
-//       $m->from('rayconlimabatista18@gmail.com', 'Raycon');
-//       $m->subject('Curso');
-//       $m->to(['rayconbentes16@gmail.com', 'rayconlimabatista@gmail.com'] );
-//    });
-//});
 
 use App\Mail\UserRegistered;
 use App\User;
 use Illuminate\Support\Facades\Mail;
 
-Route::get('email/{id}', function ($id) {
 
-//    Mail::send(new UserRegistered());
-      $id=1;
-      $user = User.where('id', $id)->first();
-      Mail::to($user->email)->send(new SendMailUser($user));
+Route::get('/contato', 'ContatoController@index');
+Route::post('/contato', 'ContatoController@enviaEmail');
+
+Auth::routes();
+
+Route::get('/', 'HomeController@index')->name('home');
+
+
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('files', 'FileEntriesController@index');
+//uploads arquivos
+    Route::get('files/create', 'FileEntriesController@create');
+    Route::post('files/upload-file', 'FileEntriesController@uploadFile');
 });
 
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
-
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
+//Auth::routes();
+//
+//Route::get('/home', 'HomeController@index')->name('home');

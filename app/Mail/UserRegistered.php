@@ -1,8 +1,7 @@
 <?php
 
 namespace App\Mail;
-
-//use App\User;
+use App\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
@@ -12,27 +11,21 @@ class UserRegistered extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $user;
-    /**
-     * Create a new message instance.
-     *
-     * @return void
-     */
-    public function __construct(User $user)
+    public $nome;
+    public $email;
+    public $mensagem;
+
+    public function __construct($nome, $email, $mensagem)
     {
-        $this->user = $user;
+        $this->nome = $nome;
+        $this->email = $email;
+        $this->mensagem = $mensagem;
     }
 
-    /**
-     * Build the message.
-     *
-     * @return $this
-     */
     public function build()
     {
-        return $this->from('rayconlimabatista18@gmail.com', 'Raycon')
-                    ->to(['rayconbentes16@gmail.com', 'rayconlimabatista@gmail.com'])
-                    ->markdown('emails.users.registered')
-                    ->view('emails.users.registered');
+        return $this->from('rayconlimabatista18@gmail.com')
+                    ->subject('Alphart Design')
+                    ->view('emails.contato');
     }
 }
