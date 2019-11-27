@@ -27,7 +27,9 @@ use Illuminate\Support\Facades\Mail;
 Route::get('email/{id}', function ($id) {
 
 //    Mail::send(new UserRegistered());
-      Mail::to($to)->send(new SendMailUser());
+      $id=1;
+      $user = User.where('id', $id)->first();
+      Mail::to($user->email)->send(new SendMailUser($user));
 });
 
 Auth::routes();

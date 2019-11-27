@@ -2,7 +2,7 @@
 
 namespace App\Mail;
 
-use App\User;
+//use App\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
@@ -18,9 +18,9 @@ class UserRegistered extends Mailable
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(User $user)
     {
-        //$this->user = $user;
+        $this->user = $user;
     }
 
     /**
