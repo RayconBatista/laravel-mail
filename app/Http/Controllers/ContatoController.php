@@ -10,7 +10,7 @@ class ContatoController extends Controller
 {
     public function index()
     {
-        return view('forms.contato');
+        return view('resources.views.emails.layouts.app');
 
     }
 
