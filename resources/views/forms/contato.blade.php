@@ -24,7 +24,7 @@
                             </ul>
                         </div>
                     @endif
-                    <form method="post" action="{{ url('contato') }}">
+                    <form method="post" action="{{ url('contato') }}" enctype="multipart/form-data">
                         {{csrf_field()}}
                         <div class="form-group row">
                             <label for="nome" class="col-md-4 col-form-label text-md-right">Nome</label>

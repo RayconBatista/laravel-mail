@@ -17,21 +17,16 @@ use App\User;
 use Illuminate\Support\Facades\Mail;
 
 
-Route::get('/contato', 'ContatoController@index');
-Route::post('/contato', 'ContatoController@enviaEmail');
-
 Auth::routes();
 
-Route::get('/', 'HomeController@index')->name('home');
+Route::get('/home', 'HomeController@index')->name('home');
+
+//teste 1
+Route::get('/contato', 'ContatoController@index');
+Route::post('/contato', 'ContatoController@enviaEmail');
+Route::post('/contato', 'ContatoController@store');
 
 
-Route::group(['middleware' => 'auth'], function () {
-    Route::get('files', 'FileEntriesController@index');
-//uploads arquivos
-    Route::get('files/create', 'FileEntriesController@create');
-    Route::post('files/upload-file', 'FileEntriesController@uploadFile');
-});
 
-//Auth::routes();
-//
-//Route::get('/home', 'HomeController@index')->name('home');
+
+

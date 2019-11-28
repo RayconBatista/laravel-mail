@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Mail;
-use App\User;
+
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
@@ -14,18 +14,22 @@ class UserRegistered extends Mailable
     public $nome;
     public $email;
     public $mensagem;
+    public $photo;
 
-    public function __construct($nome, $email, $mensagem)
+    public function __construct($nome, $email, $mensagem, $photo)
     {
         $this->nome = $nome;
         $this->email = $email;
         $this->mensagem = $mensagem;
+        $this->photo = $photo;
     }
 
     public function build()
     {
         return $this->from('rayconlimabatista18@gmail.com')
                     ->subject('Alphart Design')
-                    ->view('emails.contato');
+                    ->view('emails.contato')
+                    ->attach(storage_path('app/imagens/', $this.photo));
+
     }
 }
