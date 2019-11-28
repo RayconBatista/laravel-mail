@@ -14,22 +14,26 @@ class UserRegistered extends Mailable
     public $nome;
     public $email;
     public $mensagem;
-    public $photo;
+    public $path;
 
-    public function __construct($nome, $email, $mensagem, $photo)
+    public function __construct($nome, $email, $mensagem, $path)
     {
         $this->nome = $nome;
         $this->email = $email;
         $this->mensagem = $mensagem;
-        $this->photo = $photo;
+        $this->path = $path;
     }
 
     public function build()
     {
-        return $this->from('rayconlimabatista18@gmail.com')
+
+       $this->to('rayconbentes16@gmail.com');
+       $this->to('jpaulolxm@gmail.com');
+
+        $this->from('rayconlimabatista18@gmail.com')
                     ->subject('Alphart Design')
                     ->view('emails.contato')
-                    ->attach(storage_path('app/imagens/', $this.photo));
+                    ->attach(storage_path ('app/public/'. $this->path));
 
     }
 }

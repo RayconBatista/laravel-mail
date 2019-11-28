@@ -27,10 +27,22 @@ class ContatoController extends Controller
         $nome = $request->nome;
         $email = $request->email;
         $mensagem = $request->mensagem;
-        $photo = $request->photo;
+//        $photo = $request->photo;
+
+        if($request->file('photo')->isValid())
+        {
+//            $nameFile = $request->nome . '.' . $request->photo->extension();
+            $path = $request->photo->store('imagens');
+            logger($path);
+            ($request->photo);
+        }
+
 
         // Enviando o e-mail
-        Mail::to('rayconbentes16@gmail.com')->send(new UserRegistered($nome, $email, $mensagem, $photo));
+
+        Mail::send(new UserRegistered($nome, $email, $mensagem, $path));
+
+
         $request->session()->flash('alert-success', 'Sua mensagem foi enviada, obrigado!');
         return redirect()->back();
     }
@@ -41,8 +53,7 @@ class ContatoController extends Controller
             $nameFile = $request-> nome . '.' . $request->photo->extension();
             $path = $request->photo->storeAs('imagens', $nameFile);
             logger($path);
-
-            //dd($request->photo);
+            ($request->photo);
         }
 
         $request->session()->flash('alert-success', 'Sua mensagem foi enviada, obrigado!');

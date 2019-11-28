@@ -24,7 +24,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 //teste 1
 Route::get('/contato', 'ContatoController@index');
 Route::post('/contato', 'ContatoController@enviaEmail');
-Route::post('/contato', 'ContatoController@store');
+//Route::post('/contato', 'ContatoController@store');
 
 
 

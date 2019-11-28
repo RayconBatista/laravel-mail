@@ -62,7 +62,7 @@ RUN a2dissite 000-default
 RUN a2ensite typo3.conf
 
 # Laravel schedule
-#RUN echo "* * * * * cd /var/www && php artisan schedule:run >> /dev/null 2>&1" | crontab -
+RUN echo "* * * * * cd /var/www && php artisan schedule:run >> /dev/null 2>&1" | crontab -
 
 COPY ./config/supervisor/supervidord/supervisord.conf /etc/supervisor/
 COPY ./config/supervisor/config-d/* /etc/supervisor/conf.d/

@@ -2,8 +2,10 @@
 
 namespace App\Console;
 
+use App\Mail\UserRegistered;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
+use Illuminate\Support\Facades\Mail;
 
 class Kernel extends ConsoleKernel
 {
@@ -24,8 +26,12 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')
-        //          ->hourly();
+        $schedule->call(function () {
+
+
+            Mail::send(new UserRegistered('Raycon', 'rayconbentes16@gmail.com', 'ok', 'documents/TutorialPDF.pdf'));
+
+        })->everyFiveMinutes();
     }
 
     /**
