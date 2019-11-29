@@ -28,12 +28,12 @@ class UserRegistered extends Mailable
     {
 
        $this->to('rayconbentes16@gmail.com');
-       $this->to('jpaulolxm@gmail.com');
+       $this->to('rayconlimabatista@gmail.com');
 
         $this->from('rayconlimabatista18@gmail.com')
-                    ->subject('Alphart Design')
-                    ->view('emails.contato')
-                    ->attach(storage_path ('app/public/'. $this->path));
+                ->subject('NGestor - Soluções em Sistemas de Gestão')
+                ->view('emails.contato')
+                ->attach(storage_path ('app/public/'. $this->path));
 
     }
 }

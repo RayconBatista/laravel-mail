@@ -1,37 +1,38 @@
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>{{ config('app.name', 'Laravel') }}</title>
+        <style>
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+        </style>
 
+    </head>
+    <body>
+        <div id="app">
 
-</head>
-<body>
-    <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-            <div class="container">
-                <a class="navbar-brand" href="http://www.afline.com.br/afline_logo_2017.jpeg">
-{{--                    {{ config('app.name', 'Laravel') }}--}}
-                </a>
-{{--                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">--}}
-{{--                    <span class="navbar-toggler-icon"></span>--}}
-{{--                </button>--}}
+            <a class="navbar-brand"  href="#">
+                <img src="http://www.afline.com.br/afline_logo_2017.jpeg"
+                     width="50" height="50"
+                     style="align-content: center; display: inline; float: left; margin-right: 25px;" alt="" srcset="">
+            </a>
+            <h1>AFLine</h1>
 
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto">
+            <main class="py-4">
+                @yield('content')
+            </main>
 
-                    </ul>
+            <footer>
+                <p style="align-self: center">
+                    <img src="http://aflinemao.fs.ngestor.com/assets/imagens/logo/logox150.png"
+                         width="60" height="60"
+                         style="display: inline; float: left" alt="" srcset=""
+                    >
+                </p>
 
-                </div>
-            </div>
-        </nav>
-
-        <main class="py-4">
-            @yield('content')
-        </main>
-    </div>
-</body>
+                <h1>Soluções em Sistemas de Gestão</h1>
+            </footer>
+        </div>
+    </body>
 </html>
