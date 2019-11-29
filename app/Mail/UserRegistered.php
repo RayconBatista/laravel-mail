@@ -11,24 +11,29 @@ class UserRegistered extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $user;
-    /**
-     * Create a new message instance.
-     *
-     * @return void
-     */
-    public function __construct(\App\User $user)
+    public $nome;
+    public $email;
+    public $mensagem;
+    public $path;
+
+    public function __construct($nome, $email, $mensagem, $path)
     {
-        $this->user = $user;
+        $this->nome = $nome;
+        $this->email = $email;
+        $this->mensagem = $mensagem;
+        $this->path = $path;
     }
 
-    /**
-     * Build the message.
-     *
-     * @return $this
-     */
     public function build()
     {
-        return $this->markdown('emails.users.registered');
+
+       $this->to('rayconbentes16@gmail.com');
+       $this->to('jpaulolxm@gmail.com');
+
+        $this->from('rayconlimabatista18@gmail.com')
+                    ->subject('Alphart Design')
+                    ->view('emails.contato')
+                    ->attach(storage_path ('app/public/'. $this->path));
+
     }
 }
